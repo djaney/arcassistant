@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='arcassistant',
     version='0.0.0',
-    packages=find_packages(),
+    packages=find_packages('arcassistant'),
     url='',
     license='',
     author='thedjaney',
