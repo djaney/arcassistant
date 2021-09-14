@@ -10,11 +10,11 @@ setup(
     author_email='thedjaney@gmail.com',
     description='',
     install_requires=[
-        'djaneytasktimer',
+        'tasktimer'
         'pyqt5==5.14.*',
     ],
     dependency_links=[
-        'https://github.com/djaney/tasktimer/archive/refs/heads/main.zip#egg=djaneytasktimer'
+        'https://github.com/djaney/tasktimer/archive/refs/heads/main.zip#egg=tasktimer'
     ],
     entry_points={
         "gui_scripts": [
