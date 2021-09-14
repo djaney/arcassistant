@@ -1,6 +1,7 @@
 from arcassistant.views.assistant import MainWindow, SettingsDialog
 from tasktimer.timer import Timer
 from functools import partial
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer, QThread, pyqtSignal
 from arcassistant.shared.settings import Settings
 from tasktimer.tempo import Tempo
@@ -87,12 +88,25 @@ class AssistantCtrl(object):
                 self._view.button_play,
                 self._view.button_save,
             ],
-            on_success=self._timer_reset
+            on_finish=self._handle_save_finish
         )
 
     def _open_settings(self):
         self._settings_ctrl.load()
         self._view.window_settings.show()
+
+    def _handle_save_finish(self, success):
+        if success:
+            self._timer_reset()
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Saved!")
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText("Failed to save!")
+        msg.setWindowTitle(self._view.windowTitle())
+        msg.exec_()
 
 
 class SettingsCtrl(object):

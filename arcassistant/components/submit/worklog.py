@@ -13,16 +13,16 @@ class WorkLogSubmitButton(QPushButton):
         super(WorkLogSubmitButton, self).__init__(*args, **kwargs)
         self._thread = None
         self._disabled_widgets = []
-        self._on_success = None
+        self._on_finish = None
 
     def send(self, settings: Settings, timer: Timer, ticket: str, description: str,
              disabled_widgets_while_loading=None,
-             on_success=None):
+             on_finish=None):
 
         if type(disabled_widgets_while_loading) == list:
             self._disabled_widgets = disabled_widgets_while_loading
 
-        self._on_success = on_success
+        self._on_finish = on_finish
 
         if self._thread is None:
             for w in self._disabled_widgets:
@@ -41,8 +41,8 @@ class WorkLogSubmitButton(QPushButton):
         self._thread = None
         for w in self._disabled_widgets:
             w.setEnabled(True)
-        if self._on_success is not None and success:
-            self._on_success()
+        if self._on_finish is not None:
+            self._on_finish(success)
 
 
 class PostWorkLogThread(QThread):
