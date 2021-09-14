@@ -82,7 +82,10 @@ class AssistantCtrl(object):
             self._view.text_description.toPlainText(),
             disabled_widgets_while_loading=[
                 self._view.select_ticket,
-                self._view.text_description
+                self._view.text_description,
+                self._view.button_reset,
+                self._view.button_play,
+                self._view.button_save,
             ],
             on_success=self._timer_reset
         )
