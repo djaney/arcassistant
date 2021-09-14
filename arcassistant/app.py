@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
-from views.assistant import MainWindow
-from controllers.assistant import AssistantCtrl
+from .views.assistant import MainWindow
+from .controllers.assistant import AssistantCtrl
 
 
 def main():
