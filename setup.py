@@ -1,9 +1,9 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='arcassistant',
     version='0.0.0',
-    packages=['arcassistant'],
+    packages=find_packages(),
     url='',
     license='',
     author='thedjaney',
