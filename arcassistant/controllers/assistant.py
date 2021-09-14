@@ -1,10 +1,11 @@
 from arcassistant.views.assistant import MainWindow, SettingsDialog
-from tasktimer.timer import Timer
+from tasktimer.timer import Timer,_parse_s
 from functools import partial
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtCore import QTimer, QThread, pyqtSignal
 from arcassistant.shared.settings import Settings
 from tasktimer.tempo import Tempo
+from datetime import timedelta, datetime
 
 
 class AssistantCtrl(object):
@@ -45,11 +46,16 @@ class AssistantCtrl(object):
     def _populate_time(self):
 
         if self._timer:
-            text = self._timer.print()
+            total_time = timedelta(seconds=0)
+            for t in self._timer.history:
+                total_time += t
+            if self._timer.start_time:
+                total_time += datetime.now() - self._timer.start_time
+            elapsed = total_time
         else:
-            text = "0m"
+            elapsed = timedelta(seconds=0)
 
-        self._view.label_time.setText("Current Time: {}".format(text))
+        self._view.label_time.setText("Current Time: {}".format(_parse_s(elapsed.total_seconds())))
 
     def _timer_play(self):
         if self._timer is None:
