@@ -1,6 +1,6 @@
 ## Install
 
-    pip3 install git+https://github.com/djaney/arcassistant.git --process-dependency-links
+    pip3 install --process-dependency-links git+https://github.com/djaney/arcassistant.git
 
 ## Compatibility
 
