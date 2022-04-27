@@ -4,4 +4,4 @@
 
 ## Compatibility
 
-Targeted only to python3-pyqt version 5.14
+Tested only in python3-pyqt version 5.14 + Ubuntu Budgie 20.04
